@@ -36,7 +36,6 @@ public class movement : MonoBehaviour
         // print("update");
         if (Input.GetKey(up))
         {
-            print("p");
             velocity += speed;
         }
         if (Input.GetKey(down))
@@ -45,6 +44,9 @@ public class movement : MonoBehaviour
         }
         //print(velocity);
         position.y += velocity;
+        var vel = body.velocity;
+        vel.y = velocity;
+        body.velocity = vel;
         if(position.y > maxY)
         {
             position.y = maxY;
