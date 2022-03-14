@@ -17,7 +17,12 @@ public class bounce : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Vector2 vel = body.velocity;
+        if(Mathf.Abs(vel.x) <= 3)
+        {
+            vel.x += vel.x / 4.0f;
+        }
+        body.velocity = vel;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -26,7 +31,7 @@ public class bounce : MonoBehaviour
         ContactPoint2D[] points = new ContactPoint2D[2];
         collision.GetContacts(points);
         Vector2 vel = body.velocity;
-        print(collision.collider.attachedRigidbody.velocity.y);
+        //print(collision.collider.attachedRigidbody.velocity.y);
         // Assumption works because probably hitting things at right angles
         if (Mathf.Abs(points[0].point.x - body.position.x) > 0.1)
         {
@@ -40,5 +45,12 @@ public class bounce : MonoBehaviour
         }
         body.velocity = vel;
 
+    }
+    private void Reset()
+    {
+        body.transform.position = new Vector2(0, 0);
+        float random1 = Random.Range(3, 5);
+        float random2 = Random.Range(1, 4);
+        body.velocity = new Vector2(random1, random2);
     }
 }

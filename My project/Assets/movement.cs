@@ -31,7 +31,7 @@ public class movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 position = transform.position;
+        Vector2 position = body.transform.position;
         float velocity = 0;
         // print("update");
         if (Input.GetKey(up))
@@ -56,6 +56,6 @@ public class movement : MonoBehaviour
             position.y = minY;
         }
         //print(position.y);
-        transform.position = position;
+        body.transform.position = position;
     }
 }
